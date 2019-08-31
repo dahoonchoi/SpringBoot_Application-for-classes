@@ -83,6 +83,25 @@ public interface Dept_s_Service {
 	public void course_delete(String s_id, int inc_no);
 }
 ```
+This is 'Service' that professiors can do.
+```java
+public interface Pro_Service {
+
+	/* 로그인 */
+	public boolean loginCheck(Pro_VO p_vo, HttpSession session);
+
+	public Pro_VO Viewinfo(String p_vo);
+	
+	/* 로그아웃 */
+	public void p_logout(HttpSession session);
+	
+	/* 수강신청 */
+	public void insertCo(Course_VO co_vo,Pro_Course_VO pr_vo);
+
+	/* 개설된 수강조회 */
+	public List<Pro_Course_VO> opencourselist();
+}
+```
 
 ## GIF
 Professior
