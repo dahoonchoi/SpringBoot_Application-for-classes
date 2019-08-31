@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="professior">
+
+	<select id="p_logincheck" resultType="String">
+		SELECT p_id
+		FROM PROFESSOR
+		WHERE P_id= #{id} AND P_password=#{password}
+	</select>
+
+	<select id="p_view" resultType="com.project.managing.pro.Pro_VO">
+		SELECT *
+		FROM Professor
+		WHERE P_ID
+		= #{id}
+	</select>
+
+	<insert id="co_insert"
+		parameterType="com.project.managin.course.Course_VO"
+		useGeneratedKeys="true" keyProperty="c_no">
+<!-- selectkey사용하여 autoincrement값 반환 -->
+
+		INSERT INTO COURSE (C_NAME)
+		VALUES (#{c_name})
+
+
+	</insert>
+
+	<insert id="procourse_insert"
+		parameterType="com.project.managin.course.Pro_Course_VO">
+		INSERT INTO DEPT_PRO_COURSE (C_NO1,PERSONNEL, P_ID, C_CONTENT,C_PROGRESS,C_TIMEWEEK, C_STARTTIME, C_ENDTIME, INC_NAME,P_NAME)
+		VALUES
+		(#{c_no1},#{personnel},#{p_id},#{c_content},null,#{c_timeweek},#{c_starttime},#{c_endtime},#{inc_name},#{p_name})
+	</insert>
+	
+	<!-- 개설 강좌 확인 -->
+	<select id="opencourse" resultType="com.project.managin.course.Pro_Course_VO" >
+		SELECT *
+		FROM DEPT_PRO_COURSE 
+		ORDER BY INC_NO
+	</select>
+	
+</mapper>

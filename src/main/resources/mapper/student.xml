@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+<mapper namespace="student">
+
+	<select id="s_logincheck" resultType="String">
+		SELECT id
+		FROM STUDENT
+		WHERE
+		id= #{id} AND s_password=#{password}
+	</select>
+	
+	<select id = "s_check" resultType = "String">
+		SELECT INC_NO
+		FROM STUDENT_COURSE 
+		WHERE
+		INC_NO = #{INC_NO}
+	</select>
+
+	<select id="s_view"
+		resultType="com.project.managing.dept_s.Dept_s_VO">
+		SELECT *
+		FROM DEPT_S
+		WHERE S_ID = #{id}
+	</select>
+
+	<select id="s_info"
+		resultType="com.project.managin.student.StudentVO">
+		SELECT *
+		FROM STUDENT
+		WHERE id= #{s_id}
+	</select>
+
+<!-- 추가한 강좌 확인 -->
+	<select id="addcourse"
+		resultType="com.project.managin.course.Pro_Course_VO">
+
+		SELECT DEPT_PRO_COURSE.*
+		FROM STUDENT_COURSE INNER JOIN DEPT_PRO_COURSE
+		ON STUDENT_COURSE.INC_NO = DEPT_PRO_COURSE .INC_NO WHERE STUDENT_COURSE
+		.S_ID2 =#{s_id2}
+
+	</select>
+	
+	<!-- 강좌 삭제 -->
+	<delete id ="c_delete">
+		DELETE 
+		FROM STUDENT_COURSE 
+		WHERE INC_NO = #{inc_no} AND S_ID2 = #{s_id2}
+	</delete>
+</mapper>

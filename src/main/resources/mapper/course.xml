@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="course">
+
+
+	<select id="c_info"
+		resultType="com.project.managin.course.Pro_Course_VO">
+		SELECT *
+		FROM DEPT_PRO_COURSE
+		WHERE INC_NO= #{inc_no}
+	</select>
+
+	<insert id="c_add"
+		parameterType="com.project.managin.student.Student_c_VO">
+
+
+		INSERT INTO STUDENT_COURSE (S_ID2, SCORE, INC_NO, SEMESTER) VALUES
+		(#{s_id2},null,#{inc_no},#{semester} )
+
+
+	</insert>
+</mapper>
